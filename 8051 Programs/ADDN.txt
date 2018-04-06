@@ -1,0 +1,17 @@
+; Title Addition N 8 bit numbers
+Org 00H
+MOV R1,#05H;
+MOV R0,#30H;
+MOV R6,#00H;
+MOV R7,#00H;
+
+UP: MOV A,R6;
+ADD A,@R0;
+MOV R6,A;
+MOV R7,A;
+MOV A,R7;
+ADDC A,#00H;
+INC R0;
+DJNZ R1,UP;
+END
+

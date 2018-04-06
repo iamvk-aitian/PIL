@@ -1,0 +1,57 @@
+A51 MACRO ASSEMBLER  TIMER                                                                03/21/2017 15:20:51 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.00
+OBJECT MODULE PLACED IN timer.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE timer.a51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 0
+0000 02001D            2     ljmp start
+                       3     
+000B                   4     org 0xb
+000B C28C              5     clr TR0
+000D C28D              6     clr TF0
+000F B290              7     cpl p1.0
+0011 758901            8     mov tmod,#0x1
+0014 758CFF            9     mov th0,#0xff
+                      10     
+0017 758A0B           11     mov tl0,#0x0b
+001A D28C             12     setb tr0
+001C 32               13     reti
+                      14     
+001D 75A882           15     start: mov ie,#82H
+0020 C28C             16                clr tr0
+0022 C28D             17                clr tf0
+                      18                
+0024 758901           19                mov tmod,#0x1
+0027 758CFF           20                mov th0,#0xff
+002A 758A0B           21                mov tl0,#0x0b
+002D D28C             22                setb tr0
+002F                  23     here:
+002F 80FE             24             sjmp here
+                      25             end         
+A51 MACRO ASSEMBLER  TIMER                                                                03/21/2017 15:20:51 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   002FH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+START. . . . . . .  C ADDR   001DH   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,13 @@
+;Title:Transfer Of block form Extenrnal Memory loction(7000h)to Internal memory(20h)
+org 000H
+mov dptr,#7000h  ;dptr for externanl memory locaion
+mov r0,#20h	;reg r0 for internanl memory locaion
+mov r1,#05h	;number of block
+up:
+movx a,@dptr	;point to external memory 
+mov @r0,a	;cpy location from external memory to inernal
+inc dptr	;increment dpr
+inc r0		;increement r0
+
+djnz r1,up	;jump lop UP when r1 reg is non zero
+end		;end of code

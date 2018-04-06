@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>µVision3 Build Log</h1>
+<h2>Project:</h2>
+E:\microcontroller\8051\timer.uv2
+Project File Date:  03/21/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling timer.a51...
+timer.a51(7): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+timer.a51(20): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling timer.a51...
+timer.a51(7): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+timer.a51(20): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling timer.a51...
+timer.a51(7): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+timer.a51(20): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling timer.a51...
+timer.a51(21): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling timer.a51...
+linking...
+Program Size: data=8.0 xdata=0 code=49
+"timer" - 0 Error(s), 0 Warning(s).

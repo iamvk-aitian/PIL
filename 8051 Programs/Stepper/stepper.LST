@@ -1,0 +1,56 @@
+A51 MACRO ASSEMBLER  STEPPER                                                              03/21/2017 15:39:52 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.00
+OBJECT MODULE PLACED IN stepper.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE stepper.a51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 0
+0000 020014            2     ljmp start
+0003                   3     delay: 
+0003 78FF              4             mov r0,#0ffH
+0005 7900              5             back1: mov r1,#000H
+0007                   6             back:
+0007 D9FE              7                     djnz r1,back
+0009 D8FA              8                     djnz r0,back1
+000B 22                9                     ret
+000C 05090A06         10                     step_clockwise: db 0x5,0x9,0xA,0x6
+0010 060A0905         11                     step_anticlockwise: db 0x6,0xA,0x9,0x5
+                      12     
+0014                  13                     start:
+0014 900010           14                             mov dptr,#STEP_ANTICLOCKWISE
+0017 7C04             15                             mov R4,#04H
+0019                  16                     loop1: 
+0019 E4               17                             clr a
+001A 93               18                             movc a,@a+dptr
+001B F590             19                             mov p1,a
+001D 120003           20                             lcall delay
+0020 850090           21                             mov p1,00H
+0023 A3               22                             inc dptr
+0024 DCF3             23                             djnz r4,loop1
+0026 80EC             24                             sjmp start
+                      25                             end  
+A51 MACRO ASSEMBLER  STEPPER                                                              03/21/2017 15:39:52 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0007H   A   
+BACK1. . . . . . .  C ADDR   0005H   A   
+DELAY. . . . . . .  C ADDR   0003H   A   
+LOOP1. . . . . . .  C ADDR   0019H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+START. . . . . . .  C ADDR   0014H   A   
+STEP_ANTICLOCKWISE  C ADDR   0010H   A   
+STEP_CLOCKWISE . .  C ADDR   000CH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

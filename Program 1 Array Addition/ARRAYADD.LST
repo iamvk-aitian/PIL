@@ -1,0 +1,161 @@
+Turbo Assembler	 Version 3.0	    01/03/17 14:47:28	    Page 1
+arrayadd.asm
+
+
+
+      1				     input macro
+      2					     mov ah,01H
+      3					     int 21H
+      4				     endm
+      5
+      6				     output macro
+      7					     mov ah,02H
+      8					     int 21H
+      9				     endm
+     10
+     11				     disp macro	var
+     12					     lea dx,var
+     13					     mov ah,09H
+     14					     int 21H
+     15				     endm
+     16	0000			     .model small
+     17	0000			     .stack 100H
+     18	0000			     .data
+     19	0000  0A 0D 48 6F 77 20	6D+	     m1	db 10,13,"How many numbers ?:- $"
+     20	      61 6E 79 20 6E 75	6D+
+     21	      62 65 72 73 20 3F	3A+
+     22	      2D 20 24
+     23	0018  0A 0D 45 6E 74 65	72+	     m2	db 10,13, "Enter Numbers:- $"
+     24	      20 4E 75 6D 62 65	72+
+     25	      73 3A 2D 20 24
+     26	002B  0A 0D 41 64 64 69	74+	     m3	db 10,13,"Addition =$"
+     27	      69 6F 6E 20 3D 24
+     28	0038  0A 0D 24			     m4	db 10,13,"$"
+     29	003B  0A*(00)			     array db 10 dup(0)
+     30	0045  00			     count db 0
+     31
+     32	0046			     .code
+     33	0000  B8 0000s			     mov ax,@data
+     34	0003  8E D8			     mov ds,ax
+     35
+     36	0005  BE 003Br			     lea si,array
+     37					     disp m1
+1    38	0008  BA 0000r			     lea dx,m1
+1    39	000B  B4 09			     mov ah,09H
+1    40	000D  CD 21			     int 21H
+     41					     input
+1    42	000F  B4 01			     mov ah,01H
+1    43	0011  CD 21			     int 21H
+     44	0013  2C 30			     sub al,30H
+     45
+     46	0015  A2 0045r			     mov count,al
+     47	0018  8A 0E 0045r		     mov cl,count
+     48					     disp m4
+1    49	001C  BA 0038r			     lea dx,m4
+1    50	001F  B4 09			     mov ah,09H
+1    51	0021  CD 21			     int 21H
+     52
+     53	0023				     s1: disp m2
+1    54	0023  BA 0018r			     lea dx,m2
+1    55	0026  B4 09			     mov ah,09H
+1    56	0028  CD 21			     int 21H
+     57						 input
+Turbo Assembler	 Version 3.0	    01/03/17 14:47:28	    Page 2
+arrayadd.asm
+
+
+
+1    58	002A  B4 01			     mov ah,01H
+1    59	002C  CD 21			     int 21H
+     60	002E  88 04				 mov [si],al
+     61	0030  46				 inc si
+     62	0031  E2 F0				 loop s1
+     63
+     64						 disp m4
+1    65	0033  BA 0038r			     lea dx,m4
+1    66	0036  B4 09			     mov ah,09H
+1    67	0038  CD 21			     int 21H
+     68						 disp m3
+1    69	003A  BA 002Br			     lea dx,m3
+1    70	003D  B4 09			     mov ah,09H
+1    71	003F  CD 21			     int 21H
+     72
+     73	0041  B8 0000				 mov ax,0000H
+     74	0044  8A 0E 0045r			 mov cl,count
+     75
+     76	0048  BE 003Br				 lea si,array
+     77	004B  02 04			       s2:add al,[si]
+     78	004D  2C 30				  sub al,30H
+     79	004F  46				  inc si
+     80	0050  E2 F9				  loop s2
+     81
+     82	0052  B5 02				  mov ch,02H
+     83	0054  B1 04				  mov cl,04H
+     84	0056  8A D8				  mov bl,al
+     85
+     86	0058  D2 C3			      s3: rol bl,cl
+     87	005A  8A D3				  mov dl,bl
+     88	005C  80 E2 0F				  and dl,0FH
+     89	005F  80 FA 09				  cmp dl,09
+     90	0062  76 03				  jbe s4
+     91	0064  80 C2 07				  add dl,07
+     92
+     93	0067  80 C2 30			      s4: add dl,30H
+     94
+     95						  output
+1    96	006A  B4 02			     mov ah,02H
+1    97	006C  CD 21			     int 21H
+     98	006E  FE CD				  dec ch
+     99	0070  75 E6				  jnz s3
+    100
+    101	0072  B4 4C				  mov ah,4CH
+    102	0074  CD 21				  int 21H
+    103				     end
+Turbo Assembler	 Version 3.0	    01/03/17 14:47:28	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "01/03/17"
+??FILENAME			  Text	 "arrayadd"
+??TIME				  Text	 "14:47:28"
+??VERSION			  Number 0300
+@32BIT				  Text	 0
+@CODE				  Text	 _TEXT
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 ARRAYADD
+@INTERFACE			  Text	 00H
+@MODEL				  Text	 2
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+ARRAY				  Byte	 DGROUP:003B
+COUNT				  Byte	 DGROUP:0045
+M1				  Byte	 DGROUP:0000
+M2				  Byte	 DGROUP:0018
+M3				  Byte	 DGROUP:002B
+M4				  Byte	 DGROUP:0038
+S1				  Near	 _TEXT:0023
+S2				  Near	 _TEXT:004B
+S3				  Near	 _TEXT:0058
+S4				  Near	 _TEXT:0067
+
+Macro Name
+
+DISP
+INPUT
+OUTPUT
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  STACK				  16  0100 Para	  Stack	  STACK
+  _DATA				  16  0046 Word	  Public  DATA
+_TEXT				  16  0076 Word	  Public  CODE
+
